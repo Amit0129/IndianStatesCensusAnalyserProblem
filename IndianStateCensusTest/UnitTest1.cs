@@ -54,5 +54,19 @@ namespace IndianStateCensusTest
                 Assert.AreEqual(ex.Message, "Delimeter Incorrect");
             }
         }
+        [Test]
+        public void GivenStateCensusDataFileIncorrectHeader_WhenAnalyzed_ShouldReturnException()
+        {
+            StateCensusAnalyzer stateCensusAnalyzer = new StateCensusAnalyzer();
+            try
+            {
+                bool records = stateCensusAnalyzer.ReadStateCensusData(stateCensusCSVFilePath, "State,Population,AreaInSqKm,DensityPerSqKm");
+                Assert.IsTrue(records);
+            }
+            catch (StateCensusAndCodeException ex)
+            {
+                Assert.AreEqual(ex.Message, "Header is Incorrect");
+            }
+        }
     }
 }

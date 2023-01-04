@@ -12,7 +12,8 @@ namespace IndianStatesCensusAnalyserProblem
         {
             FILE_INCORRECT,
             TYPE_INCORRECT,
-            DELIMETER_INCORRECT
+            DELIMETER_INCORRECT,
+            HEADER_INCORRECT
         }
         public ExceptionType Type;
         public StateCensusAndCodeException(ExceptionType exceptionType, string message) : base(message)
