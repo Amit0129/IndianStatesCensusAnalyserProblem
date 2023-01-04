@@ -17,11 +17,17 @@ namespace IndianStatesCensusAnalyserProblem
             {
                 throw new StateCensusAndCodeException(StateCensusAndCodeException.ExceptionType.FILE_INCORRECT, "Incorrect FilePath");
             }
-            //Tc12.3
+            //Tc2.3
             if (!filePath.EndsWith(".csv"))
             {
                 throw new StateCensusAndCodeException(StateCensusAndCodeException.ExceptionType.TYPE_INCORRECT, "Incorrect FileType");
             }
+            //TC2.4
+            var read = File.ReadAllLines(filePath);
+            string header = read[0];
+            if (header.Contains("-"))
+                throw new StateCensusAndCodeException(StateCensusAndCodeException.ExceptionType.DELIMETER_INCORRECT, "Delimeter Incorrect");
+            //Tc2.1
             using (var reader = new StreamReader(filePath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {

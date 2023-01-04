@@ -4,8 +4,9 @@ namespace IndianStateCodeTest
     public class Tests
     {
         public static string stateCodeCSVFilePath = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\StateCode.csv";
-        public static string stateCensusWrongCSVFilePath = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\State.csv";
-        public static string stateCensusIncorrectCSVFileType = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\State.txt";
+        public static string stateCodeWrongCSVFilePath = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\State.csv";
+        public static string stateCodeIncorrectCSVFileType = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\State.txt";
+        public static string stateCodeWrongDelimeterCSVFileType = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\WrongDelimeterStateCodeData.csv";
 
         [Test]
         public void GivenStateCodeData_WhenAnalyze_ShouldReturnNumberOfRecordMatches()
@@ -21,7 +22,7 @@ namespace IndianStateCodeTest
             StateCodeAnalyzer stateCodeAnalyzer = new StateCodeAnalyzer();
             try
             {
-                int record = stateCodeAnalyzer.ReadStateCodeData(stateCensusWrongCSVFilePath);
+                int record = stateCodeAnalyzer.ReadStateCodeData(stateCodeWrongCSVFilePath);
             }
             catch (StateCensusAndCodeException ex)
             {
@@ -34,11 +35,24 @@ namespace IndianStateCodeTest
             StateCodeAnalyzer stateCodeAnalyzer = new StateCodeAnalyzer();
             try
             {
-                int record = stateCodeAnalyzer.ReadStateCodeData(stateCensusIncorrectCSVFileType);
+                int record = stateCodeAnalyzer.ReadStateCodeData(stateCodeIncorrectCSVFileType);
             }
             catch (StateCensusAndCodeException ex)
             {
                 Assert.AreEqual(ex.Message, "Incorrect FileType");
+            }
+        }
+        [Test]
+        public void GivenStateCodeDataDelimeterIncorrect_WhenAnalyzed_ShouldReturnException()
+        {
+            StateCodeAnalyzer stateCodeAnalyzer = new StateCodeAnalyzer();
+            try
+            {
+                int record = stateCodeAnalyzer.ReadStateCodeData(stateCodeWrongDelimeterCSVFileType);
+            }
+            catch (StateCensusAndCodeException ex)
+            {
+                Assert.AreEqual(ex.Message, "Delimeter Incorrect");
             }
         }
     }
