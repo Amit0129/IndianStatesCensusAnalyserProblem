@@ -3,13 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace IndianStatesCensusAnalyserProblem
 {
-    public class CSVStateCode
+    public  class StateCodeAnalyzer
     {
         public int ReadStateCodeData(string filePath)
         {
@@ -22,7 +21,7 @@ namespace IndianStatesCensusAnalyserProblem
                     Console.WriteLine(data);
                     //Console.WriteLine($"SrialNo: {data.SrNo}\tState Name: {data.StateName}\tTIN: {data.TIN}\tStateCode: {data.StateCode}");
                 }
-                return records.Count-1;
+                return records.Count - 1;
             }
         }
     }
