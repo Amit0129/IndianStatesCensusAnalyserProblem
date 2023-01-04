@@ -5,6 +5,7 @@ namespace IndianStateCensusTest
     {
         public static string stateCensusCSVFilePath = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\StateCensusData.csv";
         public static string stateCensusWrongCSVFilePath = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\StateCensus.csv";
+        public static string stateCensusIncorrectCSVFileType = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\StateCensus.txt";
 
         [Test]
         public void GivenStateCensusData_WhenAnalyze_ShouldReturnNumberOfRecordMatches()
@@ -25,6 +26,19 @@ namespace IndianStateCensusTest
             catch(StateCensusAndCodeException ex)
             {
                 Assert.AreEqual(ex.Message, "Incorrect FilePath");
+            }
+        }
+        [Test]
+        public void GivenStateCensusDataFileTypeIncorrect_WhenAnalyzed_ShouldReturnException()
+        {
+            StateCensusAnalyzer stateCensusAnalyzer = new StateCensusAnalyzer();
+            try
+            {
+                int record = stateCensusAnalyzer.ReadStateCensusData(stateCensusIncorrectCSVFileType);
+            }
+            catch (StateCensusAndCodeException ex)
+            {
+                Assert.AreEqual(ex.Message, "Incorrect FileType");
             }
         }
     }
