@@ -12,14 +12,22 @@ namespace IndianStatesCensusAnalyserProblem
     {
         public int ReadStateCensusData(string filepath)
         {
+            //Tc1.2
             if (!File.Exists(filepath))
             {
                 throw new StateCensusAndCodeException(StateCensusAndCodeException.ExceptionType.FILE_INCORRECT, "Incorrect FilePath");
             }
+            //Tc1.3
             if (!filepath.EndsWith(".csv"))
             {
                 throw new StateCensusAndCodeException(StateCensusAndCodeException.ExceptionType.TYPE_INCORRECT, "Incorrect FileType");
             }
+            //TC1.4
+            var read = File.ReadAllLines(filepath);
+            string header = read[0];
+            if (header.Contains("-"))
+                throw new StateCensusAndCodeException(StateCensusAndCodeException.ExceptionType.DELIMETER_INCORRECT, "Delimeter Incorrect");
+            //Tc1.1
             using (var reader = new StreamReader(filepath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
