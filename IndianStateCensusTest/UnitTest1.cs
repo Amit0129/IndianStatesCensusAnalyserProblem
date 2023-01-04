@@ -7,6 +7,7 @@ namespace IndianStateCensusTest
         public static string stateCensusWrongCSVFilePath = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\StateCensus.csv";
         public static string stateCensusIncorrectCSVFileType = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\StateCensus.txt";
         public static string stateCensusWrongDelimeterCSVFileType = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\WrongDelimeterStateCensusData.csv";
+        public static string stateCensusIncorrectHeaderCSVFileType = @"D:\Brizlab\All.netprog\NewBatch\IndianStateCensusProblems\IndianStatesCensusAnalyserProblem\IndianStatesCensusAnalyserProblem\File\IncorrectHeaderStateCensusData.csv";
         [Test]
         public void GivenStateCensusData_WhenAnalyze_ShouldReturnNumberOfRecordMatches()
         {
@@ -60,7 +61,7 @@ namespace IndianStateCensusTest
             StateCensusAnalyzer stateCensusAnalyzer = new StateCensusAnalyzer();
             try
             {
-                bool records = stateCensusAnalyzer.ReadStateCensusData(stateCensusCSVFilePath, "State,Population,AreaInSqKm,DensityPerSqKm");
+                bool records = stateCensusAnalyzer.ReadStateCensusData(stateCensusIncorrectHeaderCSVFileType, "State,Population,AreaInSqKm,DensityPerSqKm");
                 Assert.IsTrue(records);
             }
             catch (StateCensusAndCodeException ex)
